@@ -1,4 +1,4 @@
-# Webpack 5 Starter
+# Webpack 5 + Tailwind Starter (with Sass support)
 
 Based on [this starter](https://github.com/taniarascia/webpack-boilerplate)
 
