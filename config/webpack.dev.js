@@ -1,6 +1,7 @@
 const { merge } = require('webpack-merge')
 
 const common = require('./webpack.common')
+const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 
 module.exports = merge(common, {
   // Set the mode to development or production
@@ -16,6 +17,7 @@ module.exports = merge(common, {
     compress: true,
     hot: true,
     port: 8080,
+    watchFiles: ["src/*", "src/**/*"]
   },
 
   module: {
@@ -23,8 +25,10 @@ module.exports = merge(common, {
       // Styles: Inject CSS into the head with source maps
       {
         test: /\.(sass|scss|css)$/,
+        exclude: /node_modules/,
         use: [
-          'style-loader',
+          MiniCssExtractPlugin.loader,
+          // 'style-loader', // Replace with above
           {
             loader: 'css-loader',
             options: { sourceMap: true, importLoaders: 1, modules: false },
